@@ -13,4 +13,5 @@ Linux `shell scripting` is very useful tool for runing and managing different pr
 - basic scripts
 - loops in bash scripting
 - conditionals in bash scripting
-
+- loops in bash scripting
+- other topics in bash scripting
