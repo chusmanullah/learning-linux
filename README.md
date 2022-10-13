@@ -36,3 +36,5 @@ Linux `shell scripting` is very useful tool for runing and managing different pr
 - conditionals in bash scripting
 - loops in bash scripting
 - other topics in bash scripting
+- awk tutorial
+
