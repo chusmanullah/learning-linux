@@ -37,4 +37,4 @@ Linux `shell scripting` is very useful tool for runing and managing different pr
 - loops in bash scripting
 - other topics in bash scripting
 - awk tutorial
-
+- `awk is very important for scripting and text manipulaion`
