@@ -38,3 +38,53 @@ Linux `shell scripting` is very useful tool for runing and managing different pr
 - other topics in bash scripting
 - awk tutorial
 - `awk is very important for scripting and text manipulaion`
+### AWK Tutorial
+
+- Awk command is a powerful tool to process data. It gets input data, manipulates it,  and gives results in standarad output. Various operations can be performed on rows and columns of a file.
+Knowing the essentials of the `awk` command is very important when it comes to processing data efficently, and this post covers the key features of the `awk` command. Let's check the syntax firs:
+
+Some of the commonly used options are given in the table below:
+
+
+| **Option** | **DEscription** |
+| ---- | --- |
+| -F | To specify a file seperator |
+| -f | specify the file that contains the `awk` script |
+| -v | To assign variable |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
