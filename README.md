@@ -54,6 +54,18 @@ Some of the commonly used options are given in the table below:
 
 
 
+### 18 Commands that will Change the way you use Linux Forever
+
+- `cd -` will make you exactly back to your lst directoy
+- `cd ~` will change to home directory
+
+- CNTRL + L clears the screen
+ - Screen is not cleared it just gives you more empty space
+ 
+- reset clears every thing
+
+ 
+
 
 
 
