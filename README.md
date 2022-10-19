@@ -63,6 +63,47 @@ Some of the commonly used options are given in the table below:
  - Screen is not cleared it just gives you more empty space
  
 - reset clears every thing
+- `pushd /var`    `popd`
+ - this is very useful pushd remembers the specific directory you were in
+ - and 
+ 
+ 
+ 
+ 
+ 
+ - CTRL + z minimizes the command line porgram to background
+ 
+ - `htop` `CTRL +z ` sends to background `fg` will brings it back to foreground
+ - `!!` will add last command in front of whatever you have already typed
+ - `CTRL + r` will change the command line into search bar and search maching terms to all the commands typed previously
+ - `!102` and it will takes to the 102 history number
+ - `cmatrix` is good useless command
+ - `CTRL + a` takes the cursor to front of the line
+ - `CTRL + e` takes you to the end of the line
+ - to run two command one after the other
+ 	- `first command; secon command;`
+ 	- this way it will run first command and then go to second command
+ - `tail -f` 	will gives you the tail view in real time
+ - `truncate - s 0 hello.txt` will set the size to zero which effectively empties the file or delete all the contents
+ - `column -t` will display the ouput of files into very nice columnar view
+ 
+ 	
+ 	
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
  
 
