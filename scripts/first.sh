@@ -27,3 +27,9 @@ echo "Enter name: "
 read name
 echo "Entered name : $name"
 
+
+- to change password you have to sudo
+- passwd username and it will prompt for change
+
+
+
