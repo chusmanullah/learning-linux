@@ -27,7 +27,7 @@ magenta='\033[0; 35m'
 cyan='\033 [0;36m'
 
 # clear the color after that with
-color-erase='\033[0m'
+color_erase='\033[0m'
 
 #DEFAULT VALUES
 
@@ -110,12 +110,151 @@ usage_help () {
                 elseif(total < 1125899906842624 ) printf("\n\n\n Size of All  files is %d        %.2fTB\n",total ,total/1099511627776 )
                 else printf("\n\n\n Size of All  files is %d        %.2fPB\n",total ,total/1125899906842624 ) }' $FILE_PATH )
         echo " "
-        echo -e " ${green} $total_size_string ${color-erase}"
+        echo -e " ${green} $total_size_string ${color_erase}"
         echo " "
         echo " "
       # have to implement this for calculation of filtered files
       #  echo "$filtered_size_string"
 
 } #EOF print_func()
+
+print_raw_func () {
+  awk -F ",,,," '{  if($3 < 1024 ) printf("%-50s\t%-d bytes\t", $2 ,$3 )
+          elseif($3 < 1048576 ) printf("%-50s\t%20.2fKB\t", $2 ,$3/1024 )
+          elseif($3 < 1073741824) printf("%-50s\t%20.2fMB\t", $2 ,$3/1048576 )
+          elseif($3 < 1099511627776 ) printf("%-50s\t%20.2fGB\t", $2 ,$3/1073741824 )
+          elseif($3 < 1125899906842624 ) printf("%-50s\t%20.2fTB\t", $2 ,$3/1099511627776 )
+          else printf("%-50s\t%20.2fPB\t", $2 ,$3/1125899906842624 )
+
+          print substr($4,1,11) "        " $1 }'
+
+}
+
+main_func () {
+  echo "this is main function will be filled later"
+}
+
+
+#############################################
+### FILTER BY   DATE        #################
+#############################################
+filter_by_date () {
+  # script can take value in yyyy-mm-dd
+  # takes the date from terminal provided date into mydate
+  local mydate=$FILTER_DATE
+  #converts the provided date into epoch seconds
+  my_epoch_date=$(date -d "$mydate"+%s)
+
+  awk -F ',,,,' -v test_date=$my_epoch_date '{ if ($5 < test_date ) {
+                   print $0 }
+                   }'
+  }#EOF function filter_by_date()
+
+#############################################
+### FILTER BY EXTENSION     #################
+#############################################
+  filter_by_extension () {
+    awk -F ',,,,' -v my_ext=$FILTER_EXTENSION '{if(match(tolower(substr($2,length($2)-9,10)),tolower(my_ext)))
+                                               { print $0 }}'
+    echo "filter_by_extension is called"
+  } EOF filter_by_extension
+
+
+  #############################################
+  ### FILTER BY  SIZE         #################
+  #############################################
+filter_by_size () {
+  #script can take values in BB/bb MB/mb GB/gb TB/tb
+  # and print those values accoordingly
+  # will take the provided size in variable given size
+  local given_size=$FILTER_SIZE
+  local compare_size=""
+  #to get the length of given size
+  given_size_length=$(echo $given_size | awk '{print length}')
+  #to get last two characters of the string
+  last_val=${given_size:(-2)}
+  actual_val=${given_size::-2}
+  last_val_lower=$(echo "$last_val" | tr '[:upper:' '[:lower:]')
+  if [$last_val_lower = "kb"]
+    then
+      compare_size=$((actual_val*1024))
+  elif [$last_val_lower = "mb"]
+        then
+          compare_size=$((actual_val*1024*1024))
+  elif [$last_val_lower = "gb"]
+        then
+          compare_size=$((actual_val*1024*1024*1024))
+  elif [$last_val_lower = "tb"]
+        then
+          compare_size=$((actual_val*1024*1024*1024*1024))
+  elif [$last_val_lower = "bb"]
+        then
+          compare_size=$((actual_val))
+  else
+        exit 1
+  fi
+  #filter_by_size main logic
+  # will work on the input provided by last function
+  awk -F ',,,,' -v test_size=$compare_size '{
+     if($3>test_size)
+     {
+        print $0
+     }
+  }'
+} # EOF filter_by_size function
+
+# helper functions
+# all these functions which will be used to assist other functions in small tasks
+#not_empty () checks if provided file has value or not
+not_empty () {
+  if [ ! -z "$1"];
+  then
+    return 0;
+  else
+    return 1;
+  fi;
+}
+
+# main program flag logic using case statment
+# takes the path argument from script
+dir_check () {
+  if [[ $# -gt 0 ]]
+  then
+    DIRECTORY_PATH=$1
+    if[[ -d "$DIRECTORY_PATH"]]
+    then
+      echo " "
+      echo -e "${green} $DIRECTORY_PATH ${erase_color} is accurate"
+      shift
+    else
+      echo -e "ERROR: ${red} $DIRECTORY_PATH ${erase_color} is not a directory path"
+      usage_help
+      exit 1
+    fi
+  fi
+ }
+ ###############################################
+ ####### MAIN LOGIC STARTS HERE #################
+ ###############################################
+ # check if provided file or file path as 1st argument is correct
+ if  [[ $# -gt 0 ]]
+ then
+   FILE_PATH=$1
+   FILE_PATH=$1
+       if[[ -f "$FILE_PATH"]]
+       then
+         echo " "
+         echo -e "${green} $FILE_PATH ${erase_color} is accurate"
+         echo $a
+         echo ""
+         shift
+       else
+         echo -e "ERROR: ${red} $FILE_PATH ${erase_color} unable to find file"
+         echo ""
+         usage_help
+         exit 1
+       fi
+     fi
+
 
 
