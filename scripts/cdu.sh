@@ -260,3 +260,38 @@ dir_check () {
 #######################################################
 ########### CASE STATMENT #############################
 ######################################################
+
+#testing
+echo "Total number of Arguments"
+echo $@
+
+#parse command line argument
+while [ [ $# -gt 0 ] ];
+ do
+   key="$1"
+   case $key in
+     -h|--help)
+       usage_help
+       exit 0
+       ;;
+     -e|--extension)
+       FILTER_EXTENSION="$2"
+       shift
+       shift
+       ;;
+     -s|--size)
+       FILTER_SIZE="$2"
+       shift
+       shift
+       ;;
+     -d|--date)
+       FILTER_DATE="$2"
+       shift
+       shift
+       ;;
+     *)
+       break
+       ;;
+  esac
+done
+
