@@ -94,7 +94,7 @@ Some of the commonly used options are given in the table below:
  
 - have added multiple scripts
 - `cdu.sh` filter the results based on certain parameters e.g size , date , extension
- 
+- `cicd.sh` is a pipeline to copy script from your onmachine after compiling it and deploy it on server
  
  
  
