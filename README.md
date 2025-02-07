@@ -96,8 +96,7 @@ Some of the commonly used options are given in the table below:
 - `cdu.sh` filter the results based on certain parameters e.g size , date , extension
 - `cicd.sh` is a pipeline to copy script from your onmachine after compiling it and deploy it on server
 - `form.sh` is a script which takes the information and submit that in a database  
- 
- 
+- `sql-connector.sh` will connect to the sql database and save data into it. 
  
  
  
